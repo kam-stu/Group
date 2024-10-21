@@ -2,9 +2,9 @@
 Program that creates the most optimal groups given a CSV file of students and their ratings of each other
 
 ## Table of Contents
-- [Inputs] (#inputs)
+- [Inputs](#inputs)
 - [Optimal Algorithm](#optimal-algorithm)
-- [Backtracking Algorithm] (#backtracking-algorithm)
+- [Backtracking Algorithm](#backtracking-algorithm)
 
 ## Inputs
 The program will ask for a few parameters before generating the group.
