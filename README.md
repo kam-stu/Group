@@ -13,7 +13,7 @@ The program will ask for a few parameters before generating the group.
 Enter the file name/pathaway
 ```
 
-``bash
+```bash
 Enter the amount of groups:
 ```
 
