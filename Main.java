@@ -7,9 +7,12 @@ public class Main {
 
         List<Student> students = getFile(scanner);
         int numGroups = getGroups(scanner, students);
-        getAlgorithm(scanner, students, numGroups);
+        useAlgorithm(scanner, students, numGroups);
+        
+        scanner.close();
     }
 
+    // Gets which file to parse from the user
     public static List<Student> getFile(Scanner scanner) {
         List<Student> students = null;
         String csv;
@@ -25,6 +28,7 @@ public class Main {
                 students = readCSV(csv);
                 break;
             } 
+            // if file is not found
             catch (FileNotFoundException e) {
                 System.out.println("File not found or is not a valid file. Please enter a valid file path.");
                 scanner.reset();
@@ -66,6 +70,7 @@ public class Main {
         return students;
     }
 
+    // Gets the number of groups from the user
     public static int getGroups(Scanner scanner, List<Student> students) {
         while (true) {
             try {
@@ -75,15 +80,21 @@ public class Main {
                 if (numGroups <= students.size() && numGroups > 0) {
                     return numGroups;
                 }
+                // if input is <= 0 or > num of students
+                else {
+                    System.out.println("Invalid number.  Group size must be greater than 0 but less than total students");
+                }
             } 
+            // if input is not an integer
             catch (Exception e) {
-                System.out.println("Enter a valid number.");
+                System.out.println("Value must be a number");
                 scanner.nextLine(); // clears input
             }
         }
     }
 
-    public static void getAlgorithm(Scanner scanner, List<Student> students, int numGroups) {
+    // Gets input from user to see which algorithm should be run and runs the chosen algorithm
+    public static void useAlgorithm(Scanner scanner, List<Student> students, int numGroups) {
         while (true) {
             try {
                 System.out.println("Which algorithm would you like to use?");
@@ -100,17 +111,20 @@ public class Main {
                     printGroups(backtrackGroup, students);
                     break;
                 }
+
+                // if input is not a 0 or 1 but is an integer
                 else {
-                    System.out.println("Enter a valid input.");
+                    System.out.println("Enter 1 or 2 only.");
                 }
             }
+            // if input is not an integer
             catch (Exception e){
-                System.out.println("Invalid input.  Enter 1 or 0");
+                System.out.println("Invalid input.  Enter 1 or 2");
+                scanner.nextLine();
             }
         }
-        scanner.close();
     }
-
+    
     public static void printGroups(List<?> groups, List<Student> students) {
         Map<String, Student> studentMap = new HashMap<>();
         for (Student student : students) {
